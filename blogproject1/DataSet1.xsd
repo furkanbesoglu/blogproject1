@@ -1,0 +1,1111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="connBlog" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="connBlog (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.connBlog.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="blogTableAdapter" GeneratorDataComponentClassName="blogTableAdapter" Name="blog" UserDataComponentName="blogTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fillblog" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="tumBloglar" GeneratorSourceName="Fillblog" GetMethodModifier="Public" GetMethodName="tumBloglar" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="tumBloglar" UserSourceName="Fillblog">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogID, blogTypeID, blogBaslik, bloggerName, frontContent, blogDate, blogReads, blogDetail, blogimageURL, blogCommentReads
+FROM            blog AS b</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+              <Mapping SourceColumn="blogBaslik" DataSetColumn="blogBaslik" />
+              <Mapping SourceColumn="bloggerName" DataSetColumn="bloggerName" />
+              <Mapping SourceColumn="blogDetail" DataSetColumn="blogDetail" />
+              <Mapping SourceColumn="blogDate" DataSetColumn="blogDate" />
+              <Mapping SourceColumn="blogimageURL" DataSetColumn="blogimageURL" />
+              <Mapping SourceColumn="frontContent" DataSetColumn="frontContent" />
+              <Mapping SourceColumn="blogTypeID" DataSetColumn="blogTypeID" />
+              <Mapping SourceColumn="blogReads" DataSetColumn="blogReads" />
+              <Mapping SourceColumn="blogCommentReads" DataSetColumn="blogCommentReads" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogDetail, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL, b.frontContent FROM blog AS b INNER JOIN person AS p ON p.personID = b.personID WHERE (b.blogID = (SELECT MAX(blogID) AS Yorum FROM blog) - 12)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByadminBlog" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="AdminBlog" GeneratorSourceName="FillByadminBlog" GetMethodModifier="Public" GetMethodName="AdminBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="AdminBlog" UserSourceName="FillByadminBlog">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        b.blogID, b.personID, bt.blogName, b.blogBaslik, b.bloggerName, b.frontContent, b.blogDetail, b.blogDate, b.blogimageURL, b.blogReads, b.blogCommentReads
+FROM            blog AS b INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = b.blogTypeID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByAdminTekBlog" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="AdminTekBlog" GeneratorSourceName="FillByAdminTekBlog" GetMethodModifier="Public" GetMethodName="AdminTekBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="AdminTekBlog" UserSourceName="FillByAdminTekBlog">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        b.blogID, b.personID, bt.blogName, b.blogBaslik, b.bloggerName, b.frontContent, b.blogDetail, b.blogDate, b.blogimageURL
+FROM            blog AS b INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = b.blogTypeID
+WHERE        (b.blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.blog" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByBlogSil" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="AdminBlogSil" GeneratorSourceName="FillByBlogSil" GetMethodModifier="Public" GetMethodName="AdminBlogSil" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="AdminBlogSil" UserSourceName="FillByBlogSil">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>delete from dbo.blog where blog.blogID = @blogID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.blog" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByRandom" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="RandomTop5" GeneratorSourceName="FillByRandom" GetMethodModifier="Public" GetMethodName="RandomTop5" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="RandomTop5" UserSourceName="FillByRandom">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT TOP (5) blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent FROM blog ORDER BY NEWID()</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySonblog" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SonBlogGetir" GeneratorSourceName="FillBySonblog" GetMethodModifier="Public" GetMethodName="SonBlogGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SonBlogGetir" UserSourceName="FillBySonblog">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog))</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillbySondanAlti" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanAltiOnceki" GeneratorSourceName="FillbySondanAlti" GetMethodModifier="Public" GetMethodName="SondanAltiOnceki" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanAltiOnceki" UserSourceName="FillbySondanAlti">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 9)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySondanBes" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanBesOnceki" GeneratorSourceName="FillBySondanBes" GetMethodModifier="Public" GetMethodName="SondanBesOnceki" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanBesOnceki" UserSourceName="FillBySondanBes">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 8)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBysondanBir" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanBirOncekiBlog" GeneratorSourceName="FillBysondanBir" GetMethodModifier="Public" GetMethodName="SondanBirOncekiBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanBirOncekiBlog" UserSourceName="FillBysondanBir">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 2)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBysondanDort" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanDorduncuBlog" GeneratorSourceName="FillBysondanDort" GetMethodModifier="Public" GetMethodName="SondanDorduncuBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanDorduncuBlog" UserSourceName="FillBysondanDort">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 7)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBysondaniki" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanIkıOncekiBlog" GeneratorSourceName="FillBysondaniki" GetMethodModifier="Public" GetMethodName="SondanIkıOncekiBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanIkıOncekiBlog" UserSourceName="FillBysondaniki">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 4)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySondanSekiz" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanSekizinciBlog" GeneratorSourceName="FillBySondanSekiz" GetMethodModifier="Public" GetMethodName="SondanSekizinciBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanSekizinciBlog" UserSourceName="FillBySondanSekiz">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 11)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBysondanUc" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanUcuncuBlog" GeneratorSourceName="FillBysondanUc" GetMethodModifier="Public" GetMethodName="SondanUcuncuBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanUcuncuBlog" UserSourceName="FillBysondanUc">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 6)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySondanYedi" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondanYediOnceki" GeneratorSourceName="FillBySondanYedi" GetMethodModifier="Public" GetMethodName="SondanYediOnceki" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondanYediOnceki" UserSourceName="FillBySondanYedi">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent
+FROM            blog AS b
+WHERE        (blogID =
+                             (SELECT        MAX(blogID) AS Yorum
+                               FROM            blog) - 10)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBytekBlog" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="TekBlogGetir" GeneratorSourceName="FillBytekBlog" GetMethodModifier="Public" GetMethodName="TekBlogGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="TekBlogGetir" UserSourceName="FillBytekBlog">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT blogBaslik, blogCommentReads, blogDate, blogDetail, blogID, blogReads, blogTypeID, bloggerName, blogimageURL, frontContent FROM blog AS b WHERE (blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.blog" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="blog1TableAdapter" GeneratorDataComponentClassName="blog1TableAdapter" Name="blog1" UserDataComponentName="blog1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBlogKategori" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="bloglar" GeneratorSourceName="FillBlogKategori" GetMethodModifier="Public" GetMethodName="bloglar" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="bloglar" UserSourceName="FillBlogKategori">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        blog.blogTypeID, blog.blogBaslik, blog.bloggerName, blog.blogDate, blog.blogimageURL, blog.blogID, blog.blogReads, blog.blogCommentReads
+FROM            blog INNER JOIN
+                         blogType ON blog.blogTypeID = blogType.blogTypeID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="blogTypeID" DataSetColumn="blogTypeID" />
+              <Mapping SourceColumn="blogBaslik" DataSetColumn="blogBaslik" />
+              <Mapping SourceColumn="bloggerName" DataSetColumn="bloggerName" />
+              <Mapping SourceColumn="blogDate" DataSetColumn="blogDate" />
+              <Mapping SourceColumn="blogimageURL" DataSetColumn="blogimageURL" />
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+              <Mapping SourceColumn="blogReads" DataSetColumn="blogReads" />
+              <Mapping SourceColumn="blogCommentReads" DataSetColumn="blogCommentReads" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID1" GeneratorSourceName="FillByBlog1" GetMethodModifier="Public" GetMethodName="blogTypeID1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID1" UserSourceName="FillByBlog1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL
+FROM            blog AS b INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = b.blogTypeID
+WHERE        (b.blogTypeID = 1)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog10" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID10" GeneratorSourceName="FillByBlog10" GetMethodModifier="Public" GetMethodName="blogTypeID10" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID10" UserSourceName="FillByBlog10">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 10)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog11" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID11" GeneratorSourceName="FillByBlog11" GetMethodModifier="Public" GetMethodName="blogTypeID11" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID11" UserSourceName="FillByBlog11">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 11)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog12" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID12" GeneratorSourceName="FillByBlog12" GetMethodModifier="Public" GetMethodName="blogTypeID12" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID12" UserSourceName="FillByBlog12">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 12)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog13" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID13" GeneratorSourceName="FillByBlog13" GetMethodModifier="Public" GetMethodName="blogTypeID13" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID13" UserSourceName="FillByBlog13">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 13)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog14" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID14" GeneratorSourceName="FillByBlog14" GetMethodModifier="Public" GetMethodName="blogTypeID14" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID14" UserSourceName="FillByBlog14">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 14)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog2" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID2" GeneratorSourceName="FillByBlog2" GetMethodModifier="Public" GetMethodName="blogTypeID2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID2" UserSourceName="FillByBlog2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 2)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog3" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID3" GeneratorSourceName="FillByBlog3" GetMethodModifier="Public" GetMethodName="blogTypeID3" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID3" UserSourceName="FillByBlog3">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 3)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog4" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID4" GeneratorSourceName="FillByBlog4" GetMethodModifier="Public" GetMethodName="blogTypeID4" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID4" UserSourceName="FillByBlog4">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 4)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog5" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID5" GeneratorSourceName="FillByBlog5" GetMethodModifier="Public" GetMethodName="blogTypeID5" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID5" UserSourceName="FillByBlog5">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 5)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog6" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID6" GeneratorSourceName="FillByBlog6" GetMethodModifier="Public" GetMethodName="blogTypeID6" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID6" UserSourceName="FillByBlog6">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 6)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog7" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID7" GeneratorSourceName="FillByBlog7" GetMethodModifier="Public" GetMethodName="blogTypeID7" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID7" UserSourceName="FillByBlog7">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 7)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog8" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID8" GeneratorSourceName="FillByBlog8" GetMethodModifier="Public" GetMethodName="blogTypeID8" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID8" UserSourceName="FillByBlog8">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 8)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByBlog9" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="blogTypeID9" GeneratorSourceName="FillByBlog9" GetMethodModifier="Public" GetMethodName="blogTypeID9" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="blogTypeID9" UserSourceName="FillByBlog9">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT b.blogBaslik, b.blogCommentReads, b.blogDate, b.blogID, b.blogReads, b.blogTypeID, b.bloggerName, b.blogimageURL FROM blog AS b INNER JOIN blogType AS bt ON bt.blogTypeID = b.blogTypeID WHERE (b.blogTypeID = 9)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillTümYorumlar" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="TümYorumlarıGetir" GeneratorSourceName="FillTümYorumlar" GetMethodModifier="Public" GetMethodName="TümYorumlarıGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="TümYorumlarıGetir" UserSourceName="FillTümYorumlar">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        c.blogID, c.commentID, p.personimageURL, p.personName + ' ' + p.personSurname AS 'AD SOYAD', c.commentContent, c.commentDate
+FROM            comment AS c INNER JOIN
+                         person AS p ON p.personID = c.personID
+WHERE        (c.blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.comment" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="commentID" DataSetColumn="commentID" />
+              <Mapping SourceColumn="personimageURL" DataSetColumn="personimageURL" />
+              <Mapping SourceColumn="AD SOYAD" DataSetColumn="AD SOYAD" />
+              <Mapping SourceColumn="commentContent" DataSetColumn="commentContent" />
+              <Mapping SourceColumn="commentDate" DataSetColumn="commentDate" />
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByPersonYorum" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="TumPersonYorum" GeneratorSourceName="FillByPersonYorum" GetMethodModifier="Public" GetMethodName="TumPersonYorum" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="TumPersonYorum" UserSourceName="FillByPersonYorum">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        c.commentID, c.personID, c.blogID, c.commentContent, c.commentDate, p.personimageURL
+FROM            comment AS c INNER JOIN
+                         person AS p ON p.personID = c.personID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBypersonYorumSil" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="personYorumSil" GeneratorSourceName="FillBypersonYorumSil" GetMethodModifier="Public" GetMethodName="personYorumSil" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="personYorumSil" UserSourceName="FillBypersonYorumSil">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM comment
+WHERE        (personID = @personID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="personID" ColumnName="personID" DataSourceName="BLG.dbo.comment" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBySonIki" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SondamIkinciYorumuGetir" GeneratorSourceName="FillBySonIki" GetMethodModifier="Public" GetMethodName="SondamIkinciYorumuGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SondamIkinciYorumuGetir" UserSourceName="FillBySonIki">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        c.commentID, p.personimageURL, p.personName + ' ' + p.personSurname AS 'AD SOYAD', c.commentContent, c.commentDate
+FROM            comment AS c INNER JOIN
+                         person AS p ON p.personID = c.personID
+WHERE        (c.commentID =
+                             (SELECT        MAX(commentID) AS Expr1
+                               FROM            comment) - 2)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBySonYorum" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SonYorumuGetir" GeneratorSourceName="FillBySonYorum" GetMethodModifier="Public" GetMethodName="SonYorumuGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SonYorumuGetir" UserSourceName="FillBySonYorum">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        c.commentID, p.personimageURL, p.personName + ' ' + p.personSurname AS 'AD SOYAD', c.commentContent, c.commentDate
+FROM            comment AS c INNER JOIN
+                         person AS p ON p.personID = c.personID
+WHERE        (c.commentID =
+                             (SELECT        MAX(commentID) AS Expr1
+                               FROM            comment))</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByYorumSec" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="YorumSec" GeneratorSourceName="FillByYorumSec" GetMethodModifier="Public" GetMethodName="YorumSec" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="YorumSec" UserSourceName="FillByYorumSec">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        c.commentID, c.personID, c.blogID, c.commentContent, c.commentDate, p.personimageURL
+FROM            comment AS c INNER JOIN
+                         person AS p ON p.personID = c.personID
+WHERE        (p.personID = @personID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="personID" ColumnName="personID" DataSourceName="BLG.dbo.person" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="socialTableAdapter" GeneratorDataComponentClassName="socialTableAdapter" Name="social" UserDataComponentName="socialTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fillsocial" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="socialhepsi" GeneratorSourceName="Fillsocial" GetMethodModifier="Public" GetMethodName="socialhepsi" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="socialhepsi" UserSourceName="Fillsocial">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        p.userName, s.blogID, s.personID, s.instagram, s.facebook, s.twitter, s.linkedin, s.website
+FROM            social AS s INNER JOIN
+                         person AS p ON s.personID = p.personID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="personID" DataSetColumn="personID" />
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+              <Mapping SourceColumn="instagram" DataSetColumn="instagram" />
+              <Mapping SourceColumn="facebook" DataSetColumn="facebook" />
+              <Mapping SourceColumn="twitter" DataSetColumn="twitter" />
+              <Mapping SourceColumn="linkedin" DataSetColumn="linkedin" />
+              <Mapping SourceColumn="website" DataSetColumn="website" />
+              <Mapping SourceColumn="userName" DataSetColumn="userName" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBySocialSil" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SocialSil" GeneratorSourceName="FillBySocialSil" GetMethodModifier="Public" GetMethodName="SocialSil" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="SocialSil" UserSourceName="FillBySocialSil">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM social
+WHERE        (personID = @personID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="personID" ColumnName="personID" DataSourceName="BLG.dbo.social" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.social" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTekSocial" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="TekSocialGetir" GeneratorSourceName="FillByTekSocial" GetMethodModifier="Public" GetMethodName="TekSocialGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="TekSocialGetir" UserSourceName="FillByTekSocial">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        facebook, instagram, linkedin, twitter, website
+FROM            social
+WHERE        (blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.social" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBytekSocialPers" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="TekSocialPers" GeneratorSourceName="FillBytekSocialPers" GetMethodModifier="Public" GetMethodName="TekSocialPers" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="TekSocialPers" UserSourceName="FillBytekSocialPers">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        s.facebook, s.instagram, s.linkedin, s.twitter, s.website, s.personID, s.blogID, p.userName
+FROM            social AS s INNER JOIN
+                         person AS p ON p.personID = s.personID
+WHERE        (p.personID = @personID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="personID" ColumnName="personID" DataSourceName="BLG.dbo.person" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillPerson" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="TümPersonlarıGetir" GeneratorSourceName="FillPerson" GetMethodModifier="Public" GetMethodName="TümPersonlarıGetir" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="TümPersonlarıGetir" UserSourceName="FillPerson">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        p.userName, p.personID, p.personimageURL, p.personName, p.personSecondName, p.personSurname, p.dateOFbirth, g.genderName, bt.blogName, p.mail
+FROM            person AS p INNER JOIN
+                         gender AS g ON g.genderID = p.genderID INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = p.blogTypeID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="userName" DataSetColumn="userName" />
+              <Mapping SourceColumn="personID" DataSetColumn="personID" />
+              <Mapping SourceColumn="personimageURL" DataSetColumn="personimageURL" />
+              <Mapping SourceColumn="personName" DataSetColumn="personName" />
+              <Mapping SourceColumn="personSecondName" DataSetColumn="personSecondName" />
+              <Mapping SourceColumn="personSurname" DataSetColumn="personSurname" />
+              <Mapping SourceColumn="dateOFbirth" DataSetColumn="dateOFbirth" />
+              <Mapping SourceColumn="genderName" DataSetColumn="genderName" />
+              <Mapping SourceColumn="blogName" DataSetColumn="blogName" />
+              <Mapping SourceColumn="mail" DataSetColumn="mail" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByPersonSec" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="PersonSec" GeneratorSourceName="FillByPersonSec" GetMethodModifier="Public" GetMethodName="PersonSec" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="PersonSec" UserSourceName="FillByPersonSec">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        p.userName, p.personID, p.personimageURL, p.personName, p.personSecondName, p.personSurname, p.dateOFbirth, g.genderName, bt.blogName, p.mail
+FROM            person AS p INNER JOIN
+                         gender AS g ON g.genderID = p.genderID INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = p.blogTypeID
+WHERE        (p.personID = @personID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="personID" ColumnName="personID" DataSourceName="BLG.dbo.person" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByPersonSecUser" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="PersonSecUserName" GeneratorSourceName="FillByPersonSecUser" GetMethodModifier="Public" GetMethodName="PersonSecUserName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="PersonSecUserName" UserSourceName="FillByPersonSecUser">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        p.userName, p.personID, p.personimageURL, p.personName, p.personSecondName, p.personSurname, p.dateOFbirth, g.genderName, bt.blogName, p.mail
+FROM            person AS p INNER JOIN
+                         gender AS g ON g.genderID = p.genderID INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = p.blogTypeID
+WHERE        (p.userName = @userName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="userName" ColumnName="userName" DataSourceName="BLG.dbo.person" DataTypeServer="nvarchar(30)" DbType="String" Direction="Input" ParameterName="@userName" Precision="0" ProviderType="NVarChar" Scale="0" Size="30" SourceColumn="userName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBypersonSil" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="PersonSil" GeneratorSourceName="FillBypersonSil" GetMethodModifier="Public" GetMethodName="PersonSil" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="PersonSil" UserSourceName="FillBypersonSil">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM person
+WHERE        (personID = @personID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="personID" ColumnName="personID" DataSourceName="BLG.dbo.person" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="blog2TableAdapter" GeneratorDataComponentClassName="blog2TableAdapter" Name="blog2" UserDataComponentName="blog2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.blog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillrandomTop7" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="RandomTop7" GeneratorSourceName="FillrandomTop7" GetMethodModifier="Public" GetMethodName="RandomTop7" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="RandomTop7" UserSourceName="FillrandomTop7">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TOP (7) blogimageURL, blogDate, blogCommentReads, blogBaslik, blogID
+FROM            blog AS b
+ORDER BY NEWID()</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="blogimageURL" DataSetColumn="blogimageURL" />
+              <Mapping SourceColumn="blogDate" DataSetColumn="blogDate" />
+              <Mapping SourceColumn="blogCommentReads" DataSetColumn="blogCommentReads" />
+              <Mapping SourceColumn="blogBaslik" DataSetColumn="blogBaslik" />
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="social1TableAdapter" GeneratorDataComponentClassName="social1TableAdapter" Name="social1" UserDataComponentName="social1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.social" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillSocialHepsi2" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="SocialHepsi2" GeneratorSourceName="FillSocialHepsi2" GetMethodModifier="Public" GetMethodName="SocialHepsi2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="SocialHepsi2" UserSourceName="FillSocialHepsi2">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [social] ([personID], [blogID], [instagram], [facebook], [twitter], [linkedin], [website]) VALUES (@personID, @blogID, @instagram, @facebook, @twitter, @linkedin, @website)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@personID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="personID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@instagram" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="instagram" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@facebook" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="facebook" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@twitter" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="twitter" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@linkedin" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="linkedin" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@website" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="website" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        personID, blogID, instagram, facebook, twitter, linkedin, website
+FROM            social</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="personID" DataSetColumn="personID" />
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+              <Mapping SourceColumn="instagram" DataSetColumn="instagram" />
+              <Mapping SourceColumn="facebook" DataSetColumn="facebook" />
+              <Mapping SourceColumn="twitter" DataSetColumn="twitter" />
+              <Mapping SourceColumn="linkedin" DataSetColumn="linkedin" />
+              <Mapping SourceColumn="website" DataSetColumn="website" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectName="BLG.dbo.social" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTekSocial1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="TekSocial1" GeneratorSourceName="FillByTekSocial1" GetMethodModifier="Public" GetMethodName="TekSocial1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="TekSocial1" UserSourceName="FillByTekSocial1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        personID, blogID, instagram, facebook, twitter, linkedin, website
+FROM            social
+WHERE        (blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.social" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable3TableAdapter" GeneratorDataComponentClassName="DataTable3TableAdapter" Name="DataTable3" UserDataComponentName="DataTable3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillAdmin" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="AdminBlog" GeneratorSourceName="FillAdmin" GetMethodModifier="Public" GetMethodName="AdminBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="AdminBlog" UserSourceName="FillAdmin">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        b.blogID, b.personID, bt.blogName, b.blogBaslik, b.bloggerName, b.frontContent, b.blogDetail, b.blogDate, b.blogimageURL, b.blogReads, b.blogCommentReads
+FROM            blog AS b INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = b.blogTypeID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="blogID" DataSetColumn="blogID" />
+              <Mapping SourceColumn="personID" DataSetColumn="personID" />
+              <Mapping SourceColumn="blogName" DataSetColumn="blogName" />
+              <Mapping SourceColumn="blogBaslik" DataSetColumn="blogBaslik" />
+              <Mapping SourceColumn="bloggerName" DataSetColumn="bloggerName" />
+              <Mapping SourceColumn="frontContent" DataSetColumn="frontContent" />
+              <Mapping SourceColumn="blogDetail" DataSetColumn="blogDetail" />
+              <Mapping SourceColumn="blogDate" DataSetColumn="blogDate" />
+              <Mapping SourceColumn="blogimageURL" DataSetColumn="blogimageURL" />
+              <Mapping SourceColumn="blogReads" DataSetColumn="blogReads" />
+              <Mapping SourceColumn="blogCommentReads" DataSetColumn="blogCommentReads" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByBlogSil" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="AdminBlogSil" GeneratorSourceName="FillByBlogSil" GetMethodModifier="Public" GetMethodName="AdminBlogSil" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="AdminBlogSil" UserSourceName="FillByBlogSil">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM blog
+WHERE        (blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.blog" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByTekBlog" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="AdminTekBlog" GeneratorSourceName="FillByTekBlog" GetMethodModifier="Public" GetMethodName="AdminTekBlog" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="AdminTekBlog" UserSourceName="FillByTekBlog">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        b.blogID, b.personID, bt.blogName, b.blogBaslik, b.bloggerName, b.frontContent, b.blogDetail, b.blogDate, b.blogimageURL, b.blogReads, b.blogCommentReads
+FROM            blog AS b INNER JOIN
+                         blogType AS bt ON bt.blogTypeID = b.blogTypeID
+WHERE        (b.blogID = @blogID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="blogID" ColumnName="blogID" DataSourceName="BLG.dbo.blog" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@blogID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="blogID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+          <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Toplamblog" MethodsParameterType="CLR" Modifier="Public" Name="Toplamblog" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Toplamblog">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        COUNT(*) AS ToplamBlogSayısı
+FROM            blog</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ToplamUye" MethodsParameterType="CLR" Modifier="Public" Name="ToplamUye" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ToplamUye">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        COUNT(*) AS ToplamUyeSayısı
+FROM            person</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ToplamErkekSayısı" MethodsParameterType="CLR" Modifier="Public" Name="ToplamErkekSayısı" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="ToplamErkekSayısı">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        COUNT(genderID) AS ToplamErkekUyeSayısı
+FROM            person AS p
+WHERE        (genderID = 1)</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="connBlog (Web.config)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TOplamKAdınSayısı" MethodsParameterType="CLR" Modifier="Public" Name="TOplamKAdınSayısı" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="TOplamKAdınSayısı">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        COUNT(genderID) AS ToplamKadınUyeSayısı
+FROM            person AS p
+WHERE        (genderID = 2)</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="blog" msprop:Generator_TableClassName="blogDataTable" msprop:Generator_TableVarName="tableblog" msprop:Generator_TablePropName="blog" msprop:Generator_RowDeletingName="blogRowDeleting" msprop:Generator_RowChangingName="blogRowChanging" msprop:Generator_RowEvHandlerName="blogRowChangeEventHandler" msprop:Generator_RowDeletedName="blogRowDeleted" msprop:Generator_UserTableName="blog" msprop:Generator_RowChangedName="blogRowChanged" msprop:Generator_RowEvArgName="blogRowChangeEvent" msprop:Generator_RowClassName="blogRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="blogID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+              <xs:element name="blogBaslik" msprop:Generator_ColumnVarNameInTable="columnblogBaslik" msprop:Generator_ColumnPropNameInRow="blogBaslik" msprop:Generator_ColumnPropNameInTable="blogBaslikColumn" msprop:Generator_UserColumnName="blogBaslik">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bloggerName" msprop:Generator_ColumnVarNameInTable="columnbloggerName" msprop:Generator_ColumnPropNameInRow="bloggerName" msprop:Generator_ColumnPropNameInTable="bloggerNameColumn" msprop:Generator_UserColumnName="bloggerName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogDetail" msprop:Generator_ColumnVarNameInTable="columnblogDetail" msprop:Generator_ColumnPropNameInRow="blogDetail" msprop:Generator_ColumnPropNameInTable="blogDetailColumn" msprop:Generator_UserColumnName="blogDetail">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogDate" msprop:Generator_ColumnVarNameInTable="columnblogDate" msprop:Generator_ColumnPropNameInRow="blogDate" msprop:Generator_ColumnPropNameInTable="blogDateColumn" msprop:Generator_UserColumnName="blogDate" type="xs:dateTime" />
+              <xs:element name="blogimageURL" msprop:Generator_ColumnVarNameInTable="columnblogimageURL" msprop:Generator_ColumnPropNameInRow="blogimageURL" msprop:Generator_ColumnPropNameInTable="blogimageURLColumn" msprop:Generator_UserColumnName="blogimageURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="frontContent" msprop:Generator_ColumnVarNameInTable="columnfrontContent" msprop:Generator_ColumnPropNameInRow="frontContent" msprop:Generator_ColumnPropNameInTable="frontContentColumn" msprop:Generator_UserColumnName="frontContent">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogTypeID" msprop:Generator_ColumnVarNameInTable="columnblogTypeID" msprop:Generator_ColumnPropNameInRow="blogTypeID" msprop:Generator_ColumnPropNameInTable="blogTypeIDColumn" msprop:Generator_UserColumnName="blogTypeID" type="xs:unsignedByte" />
+              <xs:element name="blogReads" msprop:Generator_ColumnVarNameInTable="columnblogReads" msprop:Generator_ColumnPropNameInRow="blogReads" msprop:Generator_ColumnPropNameInTable="blogReadsColumn" msprop:Generator_UserColumnName="blogReads" type="xs:int" minOccurs="0" />
+              <xs:element name="blogCommentReads" msprop:Generator_ColumnVarNameInTable="columnblogCommentReads" msprop:Generator_ColumnPropNameInRow="blogCommentReads" msprop:Generator_ColumnPropNameInTable="blogCommentReadsColumn" msprop:Generator_UserColumnName="blogCommentReads" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="blog1" msprop:Generator_TableClassName="blog1DataTable" msprop:Generator_TableVarName="tableblog1" msprop:Generator_RowChangedName="blog1RowChanged" msprop:Generator_TablePropName="blog1" msprop:Generator_RowDeletingName="blog1RowDeleting" msprop:Generator_RowChangingName="blog1RowChanging" msprop:Generator_RowEvHandlerName="blog1RowChangeEventHandler" msprop:Generator_RowDeletedName="blog1RowDeleted" msprop:Generator_RowClassName="blog1Row" msprop:Generator_UserTableName="blog1" msprop:Generator_RowEvArgName="blog1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="blogTypeID" msprop:Generator_ColumnVarNameInTable="columnblogTypeID" msprop:Generator_ColumnPropNameInRow="blogTypeID" msprop:Generator_ColumnPropNameInTable="blogTypeIDColumn" msprop:Generator_UserColumnName="blogTypeID" type="xs:unsignedByte" />
+              <xs:element name="blogBaslik" msprop:Generator_ColumnVarNameInTable="columnblogBaslik" msprop:Generator_ColumnPropNameInRow="blogBaslik" msprop:Generator_ColumnPropNameInTable="blogBaslikColumn" msprop:Generator_UserColumnName="blogBaslik">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bloggerName" msprop:Generator_ColumnVarNameInTable="columnbloggerName" msprop:Generator_ColumnPropNameInRow="bloggerName" msprop:Generator_ColumnPropNameInTable="bloggerNameColumn" msprop:Generator_UserColumnName="bloggerName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogDate" msprop:Generator_ColumnVarNameInTable="columnblogDate" msprop:Generator_ColumnPropNameInRow="blogDate" msprop:Generator_ColumnPropNameInTable="blogDateColumn" msprop:Generator_UserColumnName="blogDate" type="xs:dateTime" />
+              <xs:element name="blogimageURL" msprop:Generator_ColumnVarNameInTable="columnblogimageURL" msprop:Generator_ColumnPropNameInRow="blogimageURL" msprop:Generator_ColumnPropNameInTable="blogimageURLColumn" msprop:Generator_UserColumnName="blogimageURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+              <xs:element name="blogReads" msprop:Generator_ColumnVarNameInTable="columnblogReads" msprop:Generator_ColumnPropNameInRow="blogReads" msprop:Generator_ColumnPropNameInTable="blogReadsColumn" msprop:Generator_UserColumnName="blogReads" type="xs:int" minOccurs="0" />
+              <xs:element name="blogCommentReads" msprop:Generator_ColumnVarNameInTable="columnblogCommentReads" msprop:Generator_ColumnPropNameInRow="blogCommentReads" msprop:Generator_ColumnPropNameInTable="blogCommentReadsColumn" msprop:Generator_UserColumnName="blogCommentReads" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="commentID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncommentID" msprop:Generator_ColumnPropNameInRow="commentID" msprop:Generator_ColumnPropNameInTable="commentIDColumn" msprop:Generator_UserColumnName="commentID" type="xs:int" />
+              <xs:element name="personimageURL" msprop:Generator_ColumnVarNameInTable="columnpersonimageURL" msprop:Generator_ColumnPropNameInRow="personimageURL" msprop:Generator_ColumnPropNameInTable="personimageURLColumn" msprop:Generator_UserColumnName="personimageURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AD_x0020_SOYAD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAD_SOYAD" msprop:Generator_ColumnPropNameInRow="AD_SOYAD" msprop:Generator_ColumnPropNameInTable="AD_SOYADColumn" msprop:Generator_UserColumnName="AD SOYAD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="51" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="commentContent" msprop:Generator_ColumnVarNameInTable="columncommentContent" msprop:Generator_ColumnPropNameInRow="commentContent" msprop:Generator_ColumnPropNameInTable="commentContentColumn" msprop:Generator_UserColumnName="commentContent">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="commentDate" msprop:Generator_ColumnVarNameInTable="columncommentDate" msprop:Generator_ColumnPropNameInRow="commentDate" msprop:Generator_ColumnPropNameInTable="commentDateColumn" msprop:Generator_UserColumnName="commentDate" type="xs:dateTime" />
+              <xs:element name="blogID" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="social" msprop:Generator_TableClassName="socialDataTable" msprop:Generator_TableVarName="tablesocial" msprop:Generator_TablePropName="social" msprop:Generator_RowDeletingName="socialRowDeleting" msprop:Generator_RowChangingName="socialRowChanging" msprop:Generator_RowEvHandlerName="socialRowChangeEventHandler" msprop:Generator_RowDeletedName="socialRowDeleted" msprop:Generator_UserTableName="social" msprop:Generator_RowChangedName="socialRowChanged" msprop:Generator_RowEvArgName="socialRowChangeEvent" msprop:Generator_RowClassName="socialRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="personID" msprop:Generator_ColumnVarNameInTable="columnpersonID" msprop:Generator_ColumnPropNameInRow="personID" msprop:Generator_ColumnPropNameInTable="personIDColumn" msprop:Generator_UserColumnName="personID" type="xs:int" />
+              <xs:element name="blogID" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+              <xs:element name="instagram" msprop:Generator_ColumnVarNameInTable="columninstagram" msprop:Generator_ColumnPropNameInRow="instagram" msprop:Generator_ColumnPropNameInTable="instagramColumn" msprop:Generator_UserColumnName="instagram" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="facebook" msprop:Generator_ColumnVarNameInTable="columnfacebook" msprop:Generator_ColumnPropNameInRow="facebook" msprop:Generator_ColumnPropNameInTable="facebookColumn" msprop:Generator_UserColumnName="facebook" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="twitter" msprop:Generator_ColumnVarNameInTable="columntwitter" msprop:Generator_ColumnPropNameInRow="twitter" msprop:Generator_ColumnPropNameInTable="twitterColumn" msprop:Generator_UserColumnName="twitter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="linkedin" msprop:Generator_ColumnVarNameInTable="columnlinkedin" msprop:Generator_ColumnPropNameInRow="linkedin" msprop:Generator_ColumnPropNameInTable="linkedinColumn" msprop:Generator_UserColumnName="linkedin" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="website" msprop:Generator_ColumnVarNameInTable="columnwebsite" msprop:Generator_ColumnPropNameInRow="website" msprop:Generator_ColumnPropNameInTable="websiteColumn" msprop:Generator_UserColumnName="website" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="userName" msprop:Generator_ColumnVarNameInTable="columnuserName" msprop:Generator_ColumnPropNameInRow="userName" msprop:Generator_ColumnPropNameInTable="userNameColumn" msprop:Generator_UserColumnName="userName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="userName" msprop:Generator_ColumnVarNameInTable="columnuserName" msprop:Generator_ColumnPropNameInRow="userName" msprop:Generator_ColumnPropNameInTable="userNameColumn" msprop:Generator_UserColumnName="userName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="personID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnpersonID" msprop:Generator_ColumnPropNameInRow="personID" msprop:Generator_ColumnPropNameInTable="personIDColumn" msprop:Generator_UserColumnName="personID" type="xs:int" />
+              <xs:element name="personimageURL" msprop:Generator_ColumnVarNameInTable="columnpersonimageURL" msprop:Generator_ColumnPropNameInRow="personimageURL" msprop:Generator_ColumnPropNameInTable="personimageURLColumn" msprop:Generator_UserColumnName="personimageURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="personName" msprop:Generator_ColumnVarNameInTable="columnpersonName" msprop:Generator_ColumnPropNameInRow="personName" msprop:Generator_ColumnPropNameInTable="personNameColumn" msprop:Generator_UserColumnName="personName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="personSecondName" msprop:Generator_ColumnVarNameInTable="columnpersonSecondName" msprop:Generator_ColumnPropNameInRow="personSecondName" msprop:Generator_ColumnPropNameInTable="personSecondNameColumn" msprop:Generator_UserColumnName="personSecondName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="personSurname" msprop:Generator_ColumnVarNameInTable="columnpersonSurname" msprop:Generator_ColumnPropNameInRow="personSurname" msprop:Generator_ColumnPropNameInTable="personSurnameColumn" msprop:Generator_UserColumnName="personSurname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dateOFbirth" msprop:Generator_ColumnVarNameInTable="columndateOFbirth" msprop:Generator_ColumnPropNameInRow="dateOFbirth" msprop:Generator_ColumnPropNameInTable="dateOFbirthColumn" msprop:Generator_UserColumnName="dateOFbirth" type="xs:dateTime" />
+              <xs:element name="genderName" msprop:Generator_ColumnVarNameInTable="columngenderName" msprop:Generator_ColumnPropNameInRow="genderName" msprop:Generator_ColumnPropNameInTable="genderNameColumn" msprop:Generator_UserColumnName="genderName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogName" msprop:Generator_ColumnVarNameInTable="columnblogName" msprop:Generator_ColumnPropNameInRow="blogName" msprop:Generator_ColumnPropNameInTable="blogNameColumn" msprop:Generator_UserColumnName="blogName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="mail" msprop:Generator_ColumnVarNameInTable="columnmail" msprop:Generator_ColumnPropNameInRow="mail" msprop:Generator_ColumnPropNameInTable="mailColumn" msprop:Generator_UserColumnName="mail">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="blog2" msprop:Generator_TableClassName="blog2DataTable" msprop:Generator_TableVarName="tableblog2" msprop:Generator_RowChangedName="blog2RowChanged" msprop:Generator_TablePropName="blog2" msprop:Generator_RowDeletingName="blog2RowDeleting" msprop:Generator_RowChangingName="blog2RowChanging" msprop:Generator_RowEvHandlerName="blog2RowChangeEventHandler" msprop:Generator_RowDeletedName="blog2RowDeleted" msprop:Generator_RowClassName="blog2Row" msprop:Generator_UserTableName="blog2" msprop:Generator_RowEvArgName="blog2RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="blogimageURL" msprop:Generator_ColumnVarNameInTable="columnblogimageURL" msprop:Generator_ColumnPropNameInRow="blogimageURL" msprop:Generator_ColumnPropNameInTable="blogimageURLColumn" msprop:Generator_UserColumnName="blogimageURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogDate" msprop:Generator_ColumnVarNameInTable="columnblogDate" msprop:Generator_ColumnPropNameInRow="blogDate" msprop:Generator_ColumnPropNameInTable="blogDateColumn" msprop:Generator_UserColumnName="blogDate" type="xs:dateTime" />
+              <xs:element name="blogCommentReads" msprop:Generator_ColumnVarNameInTable="columnblogCommentReads" msprop:Generator_ColumnPropNameInRow="blogCommentReads" msprop:Generator_ColumnPropNameInTable="blogCommentReadsColumn" msprop:Generator_UserColumnName="blogCommentReads" type="xs:short" minOccurs="0" />
+              <xs:element name="blogBaslik" msprop:Generator_ColumnVarNameInTable="columnblogBaslik" msprop:Generator_ColumnPropNameInRow="blogBaslik" msprop:Generator_ColumnPropNameInTable="blogBaslikColumn" msprop:Generator_UserColumnName="blogBaslik">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogID" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="social1" msprop:Generator_TableClassName="social1DataTable" msprop:Generator_TableVarName="tablesocial1" msprop:Generator_RowChangedName="social1RowChanged" msprop:Generator_TablePropName="social1" msprop:Generator_RowDeletingName="social1RowDeleting" msprop:Generator_RowChangingName="social1RowChanging" msprop:Generator_RowEvHandlerName="social1RowChangeEventHandler" msprop:Generator_RowDeletedName="social1RowDeleted" msprop:Generator_RowClassName="social1Row" msprop:Generator_UserTableName="social1" msprop:Generator_RowEvArgName="social1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="personID" msprop:Generator_ColumnVarNameInTable="columnpersonID" msprop:Generator_ColumnPropNameInRow="personID" msprop:Generator_ColumnPropNameInTable="personIDColumn" msprop:Generator_UserColumnName="personID" type="xs:int" />
+              <xs:element name="blogID" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+              <xs:element name="instagram" msprop:Generator_ColumnVarNameInTable="columninstagram" msprop:Generator_ColumnPropNameInRow="instagram" msprop:Generator_ColumnPropNameInTable="instagramColumn" msprop:Generator_UserColumnName="instagram" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="facebook" msprop:Generator_ColumnVarNameInTable="columnfacebook" msprop:Generator_ColumnPropNameInRow="facebook" msprop:Generator_ColumnPropNameInTable="facebookColumn" msprop:Generator_UserColumnName="facebook" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="twitter" msprop:Generator_ColumnVarNameInTable="columntwitter" msprop:Generator_ColumnPropNameInRow="twitter" msprop:Generator_ColumnPropNameInTable="twitterColumn" msprop:Generator_UserColumnName="twitter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="linkedin" msprop:Generator_ColumnVarNameInTable="columnlinkedin" msprop:Generator_ColumnPropNameInRow="linkedin" msprop:Generator_ColumnPropNameInTable="linkedinColumn" msprop:Generator_UserColumnName="linkedin" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="website" msprop:Generator_ColumnVarNameInTable="columnwebsite" msprop:Generator_ColumnPropNameInRow="website" msprop:Generator_ColumnPropNameInTable="websiteColumn" msprop:Generator_UserColumnName="website" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_RowClassName="DataTable3Row" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="blogID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnblogID" msprop:Generator_ColumnPropNameInRow="blogID" msprop:Generator_ColumnPropNameInTable="blogIDColumn" msprop:Generator_UserColumnName="blogID" type="xs:int" />
+              <xs:element name="personID" msprop:Generator_ColumnVarNameInTable="columnpersonID" msprop:Generator_ColumnPropNameInRow="personID" msprop:Generator_ColumnPropNameInTable="personIDColumn" msprop:Generator_UserColumnName="personID" type="xs:int" />
+              <xs:element name="blogName" msprop:Generator_ColumnVarNameInTable="columnblogName" msprop:Generator_ColumnPropNameInRow="blogName" msprop:Generator_ColumnPropNameInTable="blogNameColumn" msprop:Generator_UserColumnName="blogName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogBaslik" msprop:Generator_ColumnVarNameInTable="columnblogBaslik" msprop:Generator_ColumnPropNameInRow="blogBaslik" msprop:Generator_ColumnPropNameInTable="blogBaslikColumn" msprop:Generator_UserColumnName="blogBaslik">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bloggerName" msprop:Generator_ColumnVarNameInTable="columnbloggerName" msprop:Generator_ColumnPropNameInRow="bloggerName" msprop:Generator_ColumnPropNameInTable="bloggerNameColumn" msprop:Generator_UserColumnName="bloggerName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="frontContent" msprop:Generator_ColumnVarNameInTable="columnfrontContent" msprop:Generator_ColumnPropNameInRow="frontContent" msprop:Generator_ColumnPropNameInTable="frontContentColumn" msprop:Generator_UserColumnName="frontContent">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogDetail" msprop:Generator_ColumnVarNameInTable="columnblogDetail" msprop:Generator_ColumnPropNameInRow="blogDetail" msprop:Generator_ColumnPropNameInTable="blogDetailColumn" msprop:Generator_UserColumnName="blogDetail">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogDate" msprop:Generator_ColumnVarNameInTable="columnblogDate" msprop:Generator_ColumnPropNameInRow="blogDate" msprop:Generator_ColumnPropNameInTable="blogDateColumn" msprop:Generator_UserColumnName="blogDate" type="xs:dateTime" />
+              <xs:element name="blogimageURL" msprop:Generator_ColumnVarNameInTable="columnblogimageURL" msprop:Generator_ColumnPropNameInRow="blogimageURL" msprop:Generator_ColumnPropNameInTable="blogimageURLColumn" msprop:Generator_UserColumnName="blogimageURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="blogReads" msprop:Generator_ColumnVarNameInTable="columnblogReads" msprop:Generator_ColumnPropNameInRow="blogReads" msprop:Generator_ColumnPropNameInTable="blogReadsColumn" msprop:Generator_UserColumnName="blogReads" type="xs:int" minOccurs="0" />
+              <xs:element name="blogCommentReads" msprop:Generator_ColumnVarNameInTable="columnblogCommentReads" msprop:Generator_ColumnPropNameInRow="blogCommentReads" msprop:Generator_ColumnPropNameInTable="blogCommentReadsColumn" msprop:Generator_UserColumnName="blogCommentReads" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:blog" />
+      <xs:field xpath="mstns:blogID" />
+    </xs:unique>
+    <xs:unique name="blog1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:blog1" />
+      <xs:field xpath="mstns:blogID" />
+    </xs:unique>
+    <xs:unique name="DataTable1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:commentID" />
+    </xs:unique>
+    <xs:unique name="DataTable2_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable2" />
+      <xs:field xpath="mstns:personID" />
+    </xs:unique>
+    <xs:unique name="blog2_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:blog2" />
+      <xs:field xpath="mstns:blogID" />
+    </xs:unique>
+    <xs:unique name="DataTable3_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable3" />
+      <xs:field xpath="mstns:blogID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_comment_blog" msdata:parent="blog" msdata:child="DataTable1" msdata:parentkey="blogID" msdata:childkey="blogID" msprop:Generator_UserChildTable="DataTable1" msprop:Generator_ChildPropName="GetDataTable1Rows" msprop:Generator_UserRelationName="FK_comment_blog" msprop:Generator_ParentPropName="blogRow" msprop:Generator_RelationVarName="relationFK_comment_blog" msprop:Generator_UserParentTable="blog" />
+      <msdata:Relationship name="FK_comment_blog1" msdata:parent="blog1" msdata:child="DataTable1" msdata:parentkey="blogID" msdata:childkey="blogID" msprop:Generator_UserChildTable="DataTable1" msprop:Generator_ChildPropName="GetDataTable1Rows" msprop:Generator_UserRelationName="FK_comment_blog1" msprop:Generator_ParentPropName="blog1Row" msprop:Generator_RelationVarName="relationFK_comment_blog1" msprop:Generator_UserParentTable="blog1" />
+      <msdata:Relationship name="FK_social_blog" msdata:parent="blog" msdata:child="social1" msdata:parentkey="blogID" msdata:childkey="blogID" msprop:Generator_UserChildTable="social1" msprop:Generator_ChildPropName="Getsocial1Rows" msprop:Generator_UserRelationName="FK_social_blog" msprop:Generator_RelationVarName="relationFK_social_blog" msprop:Generator_UserParentTable="blog" msprop:Generator_ParentPropName="blogRow" />
+      <msdata:Relationship name="FK_social_blog1" msdata:parent="blog1" msdata:child="social1" msdata:parentkey="blogID" msdata:childkey="blogID" msprop:Generator_UserChildTable="social1" msprop:Generator_ChildPropName="Getsocial1Rows" msprop:Generator_UserRelationName="FK_social_blog1" msprop:Generator_RelationVarName="relationFK_social_blog1" msprop:Generator_UserParentTable="blog1" msprop:Generator_ParentPropName="blog1Row" />
+      <msdata:Relationship name="FK_social_blog2" msdata:parent="blog2" msdata:child="social1" msdata:parentkey="blogID" msdata:childkey="blogID" msprop:Generator_UserChildTable="social1" msprop:Generator_ChildPropName="Getsocial1Rows" msprop:Generator_UserRelationName="FK_social_blog2" msprop:Generator_RelationVarName="relationFK_social_blog2" msprop:Generator_UserParentTable="blog2" msprop:Generator_ParentPropName="blog2Row" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.master.cs" Inherits="blogproject1.adminpaneli.admin" %>
+
+<!DOCTYPE html>
+<head>
+    <title>Mommy Blog</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</head>
+<html>
+<body>
+    <form id="form1" runat="server">
+
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    </button>
+                </div>
+                <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
+                    <div class="user-logo">
+                        <div class="img" style="background-image: url(images/logo.jpg);"></div>
+                        <h3>Catriona Henderson</h3>
+                    </div>
+                </div>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a href="userlistpage.aspx"><span class="fa fa-user mr-3"></span>Üye Listesi</a>
+                    </li>
+                    <li>
+                        <a href="bloglistpage.aspx"><span class="fa fa-list-alt mr-3 "></span>Blog Listesi</a>
+                    </li>
+                    <li>
+                        <a href="blogTypelist.aspx"><span class="fa fa-book mr-3"></span>Blog Türü Listesi</a>
+                    </li>
+                    <li>
+                        <a href="commentlist.aspx"><span class="fa fa-comments mr-3"></span>Yorumlar Listesi</a>
+                    </li>
+                    <li>
+                        <a href="usersociallist.aspx"><span class="fa fa-hashtag mr-3"></span>Üye Sosyal Medya Listesi</a>
+                    </li>
+                    <li>
+                        <a href="statisticpage.aspx"><span class="fa fa-signal mr-3"></span>İstatistikler</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-sign-out mr-3"></span>Çıkış Yap</a>
+                    </li>
+                </ul>
+
+            </nav>
+
+            <!-- Page Content  -->
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/js.js"></script>
+        <script src="js/flexible.js"></script>
+        <script src="js/pagination.js"></script>
+        <script src="js/table_search.js"></script>
+        <script>
+
+            $('#id_search').keyup(function () {
+                table_search($('#id_search').val(), $('#table-id tbody tr '), '012');
+            });
+
+
+</script>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-36251023-1']);
+            _gaq.push(['_setDomainName', 'jqueryscript.net']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+</script>
+    </form>
+</body>
+</html>
